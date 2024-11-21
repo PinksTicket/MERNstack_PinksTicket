@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page with Header</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="reelimpbg.png" type="image/x-icon">
+</head>
+<body>
+    <div class="maincontainer">
+    <!-- Header -->
+    <header class="header-class">
+       
+        <div class="user-info">
+            <img src="reel3.jpg" alt="User Profile" class="user-image">  Pink's Ticket
+        </div>
+        <div class="help-icon">
+            <a href="#" title="Help">
+                <img src="help.png" alt="Help Icon">
+            </a>
+        </div>
+    </header>
+
+    <!-- Login Form -->
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Login</h1>
+            <form action="/login" method="post">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="btn">Login</button>
+                </div>
+                <div class="links">
+                    <a href="forgetpassword.html">Forgot Password?</a>
+                    <a href="signup.html">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
