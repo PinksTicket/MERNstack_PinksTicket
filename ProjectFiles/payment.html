@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="shortcut icon" href="images/reelimpbg.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .payment-container {
+            background: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .payment-options {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .payment-option {
+            padding: 10px 20px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+        .payment-option.active {
+            background: #007bff;
+            color: white;
+        }
+        .payment-form {
+            display: none;
+            margin-top: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            font-size: 14px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .confirmation {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Select Payment Method</h1>
+        <div class="payment-options">
+            <div class="payment-option" data-method="card">Credit/Debit Card</div>
+            <div class="payment-option" data-method="upi">UPI</div>
+            <div class="payment-option" data-method="netbanking">Net Banking</div>
+        </div>
+
+        <form id="payment-form" class="payment-form">
+            <div id="payment-details"></div>
+            <div class="input-group">
+                <label for="amount">Total Price</label>
+                <input type="text" id="amount" value="" readonly>
+            </div>
+            <button type="submit" id="confirm-btn" disabled>Confirm Payment</button>
+        </form>
+
+        <div id="confirmation-message" class="confirmation"></div>
+    </div>
+
+    <script>
+        const paymentOptions = document.querySelectorAll('.payment-option');
+    const paymentForm = document.getElementById('payment-form');
+    const paymentDetails = document.getElementById('payment-details');
+    const confirmBtn = document.getElementById('confirm-btn');
+    const confirmationMessage = document.getElementById('confirmation-message');
+    const amountInput = document.getElementById('amount');
+
+    let allInputs = [];
+
+    // Retrieve total price from localStorage
+    const totalPrice = localStorage.getItem('totalPrice') || 0;
+    amountInput.value = `Rs ${totalPrice}`;
+
+    paymentOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        paymentOptions.forEach(opt => opt.classList.remove('active'));
+        option.classList.add('active');
+
+        paymentForm.style.display = 'block';
+        const method = option.getAttribute('data-method');
+        let fieldsHTML = '';
+
+        switch (method) {
+          case 'card':
+            fieldsHTML = `
+              <div class="input-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" placeholder="Enter card number" required>
+              </div>
+              <div class="input-group">
+                <label for="expiry-date">Expiry Date (MM/YY)</label>
+                <input type="text" id="expiry-date" placeholder="MM/YY" required>
+              </div>
+              <div class="input-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" placeholder="CVV" required>
+              </div>
+            `;
+            break;
+          case 'upi':
+            fieldsHTML = `
+              <div class="input-group">
+                <label for="upi-option">Select UPI</label>
+                <select id="upi-option" required>
+                  <option value="">Choose UPI Option</option>
+                  <option value="PhonePe">PhonePe</option>
+                  <option value="Paytm">Paytm</option>
+                  <option value="GPay">GPay</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="upi-id">UPI ID</label>
+                <input type="text" id="upi-id" placeholder="Enter your UPI ID" required>
+              </div>
+            `;
+            break;
+          case 'netbanking':
+            fieldsHTML = `
+              <div class="input-group">
+                <label for="bank-name">Bank Name</label>
+                <input type="text" id="bank-name" placeholder="Enter your bank name" required>
+              </div>
+              <div class="input-group">
+                <label for="account-number">Account Number</label>
+                <input type="text" id="account-number" placeholder="Enter your account number" required>
+              </div>
+            `;
+            break;
+          default:
+            console.error("Invalid payment method:", method);
+            break;
+        }
+
+        paymentDetails.innerHTML = fieldsHTML;
+        allInputs = paymentForm.querySelectorAll('input, select');
+        allInputs.forEach(input => input.addEventListener('input', checkFormValidity));
+      });
+    });
+
+    function checkFormValidity() {
+      const allFilled = Array.from(allInputs).every(input => input.value.trim() !== '');
+      confirmBtn.disabled = !allFilled;
+    }
+
+    paymentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const transactionId = `TXN${Math.floor(Math.random() * 1000000000)}`;
+      confirmationMessage.innerHTML = `
+        Payment successful!<br>
+        Transaction ID: <strong>${transactionId}</strong><br>
+        Thank you for booking with us, have a great time 😎<br/>
+        Ticket generated successfully 🎟️
+      `;
+
+    //   paymentForm.style.display = 'none';
+    //   paymentDetails.innerHTML = '';
+    //   confirmBtn.disabled = true;
+    //   paymentOptions.forEach(opt => opt.classList.remove('active'));
+    //   paymentForm.reset();
+        alert('See your Tickets');
+        window.location.href = 'ticket-info.html';
+    });
+    </script>
+</body>
+</html>

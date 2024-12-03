@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink's Ticket</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="images/reelimpbg.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div class="header_container">
+            <div class="leftbox">
+                <a href="index.html" class="logo_class">
+                    <img src="images/reelimpbg.png" alt="reel image" id="logo_img">
+                    <span id="Sitelogo">Pink's Ticket</span>
+                </a>
+
+                <form class="example" action="/action_page.php">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search for Movies or Streaming..." 
+                        name="search"
+                        autocomplete="off">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <div id="suggestionsBox" class="suggestions-box"></div>
+                </form>
+            </div>
+
+            <div class="rightbox">
+                <select name="city" id="select_city">
+                    <option value="" selected disabled>Select City</option>
+                    <option value="idr">Indore</option>
+                    <option value="bhp">Bhopal</option>
+                    <option value="mum">Mumbai</option>
+                    <option value="dlh">Delhi</option>
+                    <option value="lkw">Lucknow</option>
+                    <option value="bnrs">Banaras</option>
+                    <option value="bglr">Bengaluru</option>
+                    <option value="klk">Kolkata</option>
+                    <option value="hyd">Hyderabad</option>
+                    <option value="ahem">Ahemdabad</option>
+                    <option value="vizag">Vizag</option>
+                    <option value="bhuv">Bhuvneshwar</option>
+                </select>
+                <a href="loginPage2.html">
+                <button class="login">Login</button>
+                </a>
+            </div>
+            
+        </div>
+
+        <div class="nav_class">
+            <nav class="nav_links">
+                <a href="index.html" class="nav_tags">Home</a>
+                <a href="#movies_recom" class="nav_tags">Movies</a>
+                <a href="#stream" class="nav_tags">Live Streaming</a>
+                <a href="#cinema" class="nav_tags">Theatre Near by</a>
+            </nav>
+
+            <nav class="nav_links">
+                <a href="#About" class="nav_tags" id="abt">About</a>
+                <a href="#Contact" class="nav_tags">Contact Us</a>
+                <a href="#feedback" class="nav_tags" id="feedbackprev">FeedBack</a>
+            </nav>
+        </div>
+
+        <div class="slider-container">
+            <div class="slides">
+                <div class="slide"><img src="images/PushpaSlider.avif" alt="Image 1"></div>
+                <div class="slide"><img src="images/Movie3.jpg" alt="Image 2"></div>
+                <div class="slide"><img src="images/Bhoolbhuli3.avif" alt="Image 4"></div>
+            </div>
+
+            <button class="nav-button prev" onclick="prevSlide()">❮</button>
+            <button class="nav-button next" onclick="nextSlide()">❯</button>
+        </div>
+
+        <div class="movies">
+            <div class="header_movies" id="movies_recom">
+                <span>Recommended Movies</span>
+            </div>
+            <div class="slider-container grid-slider">
+            <div class="slides-grid">
+                <div class="card">
+                    <a href="Moviedetails.html">
+                        <img src="images/PushpaPoster.avif" alt="BhoolBhulia3">
+                    </a>
+                    <p>
+                        <span id="movie_title">Pushpa:The Rule - Part 2</span><br/>
+                        <span id="genre">Action/Thriller</span>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <a href="Moviedetails2.html">
+                    <img src="images/Gladiator.avif" alt="gladiator">
+                    <p>
+                        <span id="movie_title">Gladiator 2</span><br>
+                        <span id="genre">Action/Adventure/Fantasy</span>
+                    </p>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="Moviedetails3.html">
+                    <img src="images/BhoolBhul3.avif" alt="bhoolbhuliyaa3">
+                    <p>
+                        <span id="movie_title">Bhool Bhulaiyaa 3</span><br/>
+                        <span id="genre">Comedy/Horror</span>
+                    </p>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="Moviedetails4.html">
+                    <img src="images/sabarmatireport.avif" alt="sabarmati">
+                    <p>
+                        <span id="movie_title">The Sabarmati Report</span><br/>
+                        <span id="genre">Drama/Historical</span>
+                    </p>
+                    </a>
+                </div>
+
+                <div class="card card5">
+                    <a href="Moviedetails.html">
+                    <img src="images/SinghamReturns.avif" alt="singhamreturn">
+                    <p>
+                        <span id="movie_title">Singham Again</span><br/>
+                        <span id="genre">Action/Drama</span>
+                    </p>
+                    </a>
+                </div>
+
+                <div class="card card6">
+                    <a href="Moviedetails.html">
+                    <img src="images/venom.avif" alt="venom">
+                    <p>
+                        <span id="movie_title">Venom</span><br/>
+                        <span id="genre">Action/Adventure/Si-Fi</span>
+                    </p>
+                    </a>
+                </div>
+
+                <div class="card card7">
+                    <a href="Moviedetails.html">
+                    <img src="images/wildRobot.avif" alt="wildrobo3">
+                    <p>
+                        <span id="movie_title">Wild Robot</span><br/>
+                        <span id="genre">Adventure/Animation/Family</span>
+                    </p>
+                    </a>
+                </div>
+
+                <div class="card card8">
+                    <a href="Moviedetails.html">
+                    <img src="images/Kanguva.avif" alt="Kanguva">
+                    <p>
+                        <span id="movie_title">Kanguva
+                        </span><br/>
+                        <span id="genre">Action/Adventure/Fantasy</span>
+                    </p>
+                    </a>
+                </div>
+            </div>
+                <button class="nav-button prev-grid" onclick="prevGridSlide()">❮</button>
+                <button class="nav-button next-grid" onclick="nextGridSlide()">❯</button>
+            </div>
+        </div>
+
+        <div class="stream" id="stream">
+            <a href="" >
+                <img src="images/stream.jpeg" alt="streamImage" id="streamImage">
+            </a>
+        </div>
+
+        <div class="map_cinema">
+            <h3 id="cinema">Theatre Near By</h3>
+            <div class="map_cin">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d16219.052094363338!2d75.87304142153907!3d22.69403582869019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scinema%20near%20bhawarkua%20indore!5e1!3m2!1sen!2sin!4v1732167889595!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="eager" referrerpolicy="no-referrer-when-downgrade" id="iframe_frame"></iframe>
+            </div>
+        </div>
+
+        <div class="footer">
+            <footer class="footer">
+                <div class="premier">
+                    <a href="#movies_recom">
+                    <img src="images/Screenshot (373).png" alt=""><br>
+                    </a>
+                </div><br>
+                <div class="footer-top">
+                    
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li id="About"><a href="#abt">About Us</a></li>
+                            <li id="Contact"><a href="mailto:rammuchhal26@gmail.com">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Help</h4>
+                        <ul>
+                            <li id="feedback"><a href="#feedbackprev">FAQs</a></li>
+                            <li><a href="#">Terms and Conditions</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#movies_recom">Now Showing</a></li>
+                            <li><a href="https://www.rottentomatoes.com/browse/movies_coming_soon/">Upcoming Movies</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="https://x.com/"><img src="images/Xlogo.png" alt="Twitter" id="logo"></a>
+                            <a href="https://www.instagram.com/"><img src="images/Instalogo.png" alt="Instagram" id="logo"></a>
+                            <a href="https://www.youtube.com/"><img src="images/youTubeLogo.png" alt="YouTube" id="logo"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Pink's Ticket. All Rights Reserved.</p><br/>
+                    <p>Unauthorized duplication or redistribution of content is strictly prohibited. Pink's Ticket is a registered trademark. For inquiries, visit our Contact Us page.</p>
+                </div>
+            </footer>            
+        </div>
+    </div>
+
+
+    <script src="script.js" defer></script>
+</body>
+</html>
