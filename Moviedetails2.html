@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Details</title>
+  <link rel="shortcut icon" href="reelimpbg.png" type="image/x-icon">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      width: 100%;
+      margin: auto;
+      margin-top: 20px;
+    }
+    .header-class{
+    display: flex;
+    justify-content: space-between;
+    /* width: 100%; */
+    background-color: #FF3CAC;
+    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+    height: 4.7rem;
+    font-size: 1.31rem;
+    }
+
+    /* Header Styling */
+    header {
+        display: flex;
+        /* justify-content: space-between; */
+        /* align-items: center; */
+        background: #007bff;
+        padding: 10px 20px;
+        color: white;
+        height: 60px;
+        /* position: relative; */
+    }
+
+    /* Help Icon */
+    .help-icon {
+        display: flex;
+        align-items: center;
+    }
+
+    .help-icon img {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    /* User Info */
+    .user-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 170px;
+        
+        
+    }
+
+    .user-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        /* border: 2px solid white; */
+        cursor: pointer;
+    }
+    .movie-header {
+      display: flex;
+      margin-top:2rem;
+      margin-left: 4rem;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 80%;
+    }
+    .poster img {
+      width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    .details {
+      flex: 1;
+    }
+    .details h1 {
+      margin: 0;
+      color: #333;
+    }
+    .details p {
+      color: #555;
+      margin: 10px 0;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .actions button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .actions .trailer {
+      background-color: #007bff;
+      color: white;
+    }
+    .actions .trailer:hover {
+      background-color: #0056b3;
+    }
+    .actions .book {
+      background-color: #28a745;
+      color: white;
+    }
+    .actions .book:hover {
+      background-color: #218838;
+    }
+    .summary {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      line-height: 1.6;
+      width:80%;
+      margin-left: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+        <header class="header-class">
+       
+            <div class="user-info">
+                <img src="images/reelimpbg.png" alt="User Profile" class="user-image"> <strong> Pink's Ticket</strong>
+            </div>
+            <div class="help-icon">
+                <a href="#" title="Help">
+                    <img src="images/help.png" alt="Help Icon">
+                </a>
+            </div>
+        </header>
+    </div>
+    <div class="movie-header">
+      <div class="poster">
+        <img src="images/Gladiator.avif" alt="Movie Poster">
+      </div>
+      <div class="details">
+        <h1>Gladiator 2</h1>
+        <p><strong>Genre:</strong> Action/Adventure/Fantasy</p>
+        <p><strong>Release Date:</strong> December 22, 2024</p>
+        <p><strong>Rating:</strong> 4.5/5</p>
+        <div class="actions">
+            <button class="trailer" onclick="watchTrailer()">Watch Trailer</button>
+            <button class="book" onclick="bookTickets()" >Book Tickets</button>
+         
+        </div>
+      </div>
+    </div>
+
+    <div class="summary">
+      <h2>Movie SneakPeak</h2>
+      <p>
+        Sixteen years after Marcus Aurelius's death,Rome is ruled by the corrupt twin emperors Geta and Caracalla. Aurelius's grandson, Lucius Verus, lives under the alias Hanno with his wife Arishat in the North African kingdom of Numidia. The Roman army led by General Acacius invades and conquers the kingdom, killing Arishat and enslaving Lucius along with the other survivors. The slaves are taken to Ostia, where the Romans pit them against feral baboons to advertise them as potential gladiators. Lucius savagely kills a baboon, impressing the stable master Macrinus, who promises Lucius an opportunity to kill Acacius if he wins enough fights in Rome.
+
+        Acacius returns to Rome as a war hero; Geta and Caracalla arrange gladiatorial games in the Colosseum to celebrate his victory. Disillusioned with war, Acacius requests a break with his wife Lucilla, the daughter of Aurelius and Lucius's mother, but the emperors refuse and plot to conquer Persia and India. Senator Thraex throws a party for the emperors and arranges a gladiatorial duel as entertainment. After Lucius wins, he recites a verse from Virgil's Aeneid, revealing his Roman education. Ravi, the gladiators' physician, treats Lucius's injuries and befriends him.
+        
+        Lucius emulates the late legendary gladiator Maximus in the Colosseum to win fights. Lucilla recognizes Lucius as her son, whom she sent away from Rome as a child to protect him from rivals for the throne. She visits Lucius and tries to reconnect with him, but Lucius angrily rebuffs her. He resents being forced to flee Rome while his mother lived in luxury and is upset that her new husband caused Arishat's death. During a naumachia in the Colosseum, Lucius leads the gladiators to victory and fires a crossbow at the spectating Acacius but fails to kill him.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function watchTrailer() {
+      window.location.href = "https://youtu.be/Ts0N8swyWFI?si=OSXUmFLKPAXnd5cx"; // Replace with the actual trailer link
+    }
+    function bookTickets() {
+      window.location.href = "seating2.html"; // Replace with the actual ticket booking link
+    }2
+  </script>
+</body>
+</html>

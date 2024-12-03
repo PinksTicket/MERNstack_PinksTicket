@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="signupstyle.css">
+    <link rel="shortcut icon" href="images/reelimpbg.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Signup Form -->
+    <div class="signup-container">
+        <div class="signup-box">
+            <h1>Sign Up</h1>
+            <form action="/signup" method="post"> <!-- Changed action to navigate to LoginPage.html -->
+                <div class="input-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                </div>
+                <div class="input-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" placeholder="Enter your age" required>
+                </div>
+                <div class="input-group">
+                    <label for="gender">Gender</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="gender" value="male" required> Male
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="female" required> Female
+                        </label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="btn">Sign Up</button> <!-- Submit button to navigate -->
+                </div>
+                <div class="links">
+                    <p>Already have an account? <a href="LoginPage.html">Login here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+    
+            const fullname = document.querySelector('#fullname').value;
+            const email = document.querySelector('#email').value;
+            const username = document.querySelector('#username').value;
+            const password = document.querySelector('#password').value;
+            const age = document.querySelector('#age').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+    
+            try {
+                const response = await fetch('http://localhost:5000/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fullname, email, username, password, age, gender })
+                });
+    
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message); // Alert account created message
+                    window.location.href = 'loginPage2.html'; // Redirect to login page
+                } else {
+                    alert(result.message); // Alert any errors
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong');
+            }
+        });
+    </script>
+    
+</body>
+</html>

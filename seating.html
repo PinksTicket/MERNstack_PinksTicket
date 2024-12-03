@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Theater Seat Selection</title>
+  <link rel="shortcut icon" href="reel3bg.png" type="image/x-icon">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 20px;
+    }
+    .theater {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      width: 100%;
+    }
+    .screen {
+      background-color: #ccc;
+      width: 90%;
+      height: 20px;
+      margin-top: 20px;
+      margin-bottom: 100px;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 20px; /* Aligns text vertically */
+      font-size: 14px;
+      font-weight: bold;
+      color: black;
+    }
+
+    /* .screen:before {
+      content: "Screen";
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: bold;
+      font-size: 14px;
+      color: black;
+    } */
+    .section {
+      display: grid;
+      grid-template-columns: repeat(20, 1fr);
+      gap: 5px;
+      margin-bottom: 30px;
+      width: 80%;
+    }
+    .seat {
+      width: 30px;
+      height: 30px;
+      background-color: green;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .seat.recliner {
+      background-color: gold;
+    }
+    .seat.silver {
+      background-color: silver;
+    }
+    .seat.bronze {
+      background-color: #cd7f32;
+    }
+    .seat.selected {
+      background-color: blue;
+    }
+    .seat.unavailable {
+      background-color: gray;
+      cursor: not-allowed;
+    }
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .legend-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+    }
+    .gold {
+      background-color: gold;
+    }
+    .silver-box {
+      background-color: silver;
+    }
+    .bronze-box {
+      background-color: #cd7f32;
+    }
+    #confirm {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 25px;
+      transition: all 0.3s ease-in-out;
+    }
+    #confirm:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    #heading_movie {
+      padding: 2rem;
+      background-color: #ac316e;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="heading_movie">Movie Theater Seat Selection</h1>
+  <p>Movie: <strong>Bhool Bhulaiyaa 3</strong></p>
+  <p>Showtime: <strong>7:00 PM</strong></p>
+
+  <div class="theater">
+    <div class="screen">Screen</div>
+
+    <!-- Bronze Section (60 seats) -->
+    <div class="section" id="bronze-section"></div>
+
+    <!-- Silver Section (150 seats) -->
+    <div class="section" id="silver-section"></div>
+
+    <!-- Recliner Section (30 seats) -->
+    <div class="section" id="recliner-section"></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-box gold"></div>
+      <span>Recliner (₹270)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-box silver-box"></div>
+      <span>Silver(₹180)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-box bronze-box"></div>
+      <span>Bronze(₹120)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-box blue"></div>
+      <span>Selected</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-box gray"></div>
+      <span>Unavailable</span>
+    </div>
+  </div>
+
+  <button id="confirm">Confirm Selection</button>
+
+  <script>
+    const reclinerSection = document.getElementById('recliner-section');
+    const silverSection = document.getElementById('silver-section');
+    const bronzeSection = document.getElementById('bronze-section');
+    const confirmButton = document.getElementById('confirm');
+
+    const reclinerSeats = 30;
+    const silverSeats = 150;
+    const bronzeSeats = 60;
+    const unavailableSeats = [5, 10, 15, 20, 35, 50, 60, 100];
+
+    let seatNumber = 1; // Initialize seat numbering
+
+    // Function to create seats with seat numbers
+    function createSeats(section, numSeats, type) {
+      for (let i = 0; i < numSeats; i++) {
+        const seat = document.createElement('div');
+        seat.classList.add('seat', type);
+        seat.textContent = seatNumber; // Assign seat number
+        if (unavailableSeats.includes(seatNumber)) {
+          seat.classList.add('unavailable');
+        }
+        seat.addEventListener('click', () => {
+          if (!seat.classList.contains('unavailable')) {
+            seat.classList.toggle('selected');
+          }
+        });
+        section.appendChild(seat);
+        seatNumber++; // Increment seat number
+      }
+    }
+
+    // Create seats for each section
+    createSeats(bronzeSection, bronzeSeats, 'bronze');
+    createSeats(silverSection, silverSeats, 'silver');
+    createSeats(reclinerSection, reclinerSeats, 'recliner');
+
+    // Confirm button functionality
+    confirmButton.addEventListener('click', () => {
+      const selectedSeats = [...document.querySelectorAll('.seat.selected')];
+      if (selectedSeats.length === 0) {
+        alert('No seats selected!');
+      } else {
+        const seatNumbers = selectedSeats.map(seat => seat.textContent);
+        alert(`You have selected seats: ${seatNumbers.join(', ')}`);
+      }
+    });
+  </script>
+</body>
+</html>
